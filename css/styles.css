@@ -1,0 +1,224 @@
+/* styles.css - CSS for the Claude-style Kurdish Text Generator */
+
+:root {
+    --background-color: #121212;
+    --card-background: #1E1E1E;
+    --text-color: rgba(255, 255, 255, 0.87);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --button-hover: rgba(255, 255, 255, 0.08);
+    --accent-color: #C87D5B;
+    --error-color: #ff6b6b;
+    --error-bg: rgba(255, 107, 107, 0.1);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body { 
+    direction: rtl; 
+    font-family: 'Segoe UI', Tahoma, Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.main-content {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.output-area {
+    background-color: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 20px;
+    margin-bottom: 20px;
+    min-height: 300px;
+    width: 100%;
+    overflow-y: auto;
+    white-space: pre-line;
+    line-height: 1.6;
+}
+
+.input-area {
+    position: relative;
+    background-color: var(--card-background);
+    border-radius: 16px;
+    border: 1px solid var(--border-color);
+    padding: 10px;
+    display: flex;
+    align-items: center;
+}
+
+.input-area textarea {
+    background: transparent;
+    border: none;
+    flex-grow: 1;
+    color: var(--text-color);
+    font-family: inherit;
+    font-size: 1rem;
+    padding: 10px;
+    resize: none;
+    outline: none;
+    direction: rtl;
+    height: 56px;
+    overflow-y: auto;
+}
+
+.input-area textarea::placeholder {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.button-group {
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+}
+
+.icon-button {
+    background: transparent;
+    border: none;
+    color: var(--text-color);
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    margin-left: 5px;
+    transition: background-color 0.2s;
+}
+
+.icon-button:hover {
+    background-color: var(--button-hover);
+}
+
+.send-button {
+    background-color: var(--accent-color);
+    border: none;
+    color: white;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: opacity 0.2s;
+}
+
+.send-button:hover {
+    opacity: 0.9;
+}
+
+.loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.spinner {
+    border: 3px solid rgba(255, 255, 255, 0.1);
+    border-top: 3px solid rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    animation: spin 1s linear infinite;
+    margin-left: 10px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.model-selector {
+    background-color: var(--card-background);
+    border: 1px solid var(--border-color);
+    color: var(--text-color);
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    cursor: default;
+    display: flex;
+    align-items: center;
+}
+
+.model-selector i {
+    margin-right: 8px;
+}
+
+.error-message {
+    color: var(--error-color);
+    padding: 10px;
+    background-color: var(--error-bg);
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+/* Copy button that appears when hovering over output */
+.copy-container {
+    position: relative;
+}
+
+.copy-btn {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background-color: rgba(0, 0, 0, 0.4);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    padding: 5px 10px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    opacity: 0;
+    transition: opacity 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.copy-btn i {
+    margin-left: 5px;
+}
+
+.copy-container:hover .copy-btn {
+    opacity: 1;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .input-area {
+        padding: 5px;
+    }
+    
+    .send-button, .icon-button {
+        width: 36px;
+        height: 36px;
+    }
+}
